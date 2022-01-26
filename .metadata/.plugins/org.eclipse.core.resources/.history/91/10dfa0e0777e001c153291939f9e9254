@@ -1,0 +1,18 @@
+package kosaShoppingMall.service.employee;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kosaShoppingMall.command.EmployeeCommand;
+
+@Component
+@Service
+public class EmployeeUpdateService {
+	@Autowired
+	public void execute(EmployeeCommand employeeCommand, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

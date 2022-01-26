@@ -1,0 +1,5 @@
+package kosaShoppingMall.service.employee;
+
+public class EmployeeWriteService {
+
+}

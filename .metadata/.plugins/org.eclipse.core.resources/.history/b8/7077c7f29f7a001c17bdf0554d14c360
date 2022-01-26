@@ -1,0 +1,11 @@
+package springBootTest2.mapper;
+
+import springBootTest2.domain.EmpLibDTO;
+
+public interface EmpLibMapper {
+
+	public String autoNum();
+
+	public Integer emplibInsert(EmpLibDTO dto);
+
+}

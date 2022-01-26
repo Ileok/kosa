@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="UTF-8"%>
+<%@ page import="point.Point" %>
+<%
+	Point p1 = new Point();
+	Point p2 = new Point(10, 20);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+p1's x = <%= p1.getX() %> <br/>
+p1's y = <%= p1.getY() %> <br/>
+p2's x = <%= p2.getX() %> <br/>
+p2's y = <%= p2.getY() %> <br/>
+</body>
+</html>

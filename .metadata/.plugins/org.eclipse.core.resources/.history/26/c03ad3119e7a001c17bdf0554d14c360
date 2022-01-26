@@ -1,0 +1,29 @@
+package springBootTest2.service.emplib;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import springBootTest2.command.EmpLibCommand;
+import springBootTest2.domain.EmpLibDTO;
+import springBootTest2.mapper.EmpLibMapper;
+
+@Component
+@Service
+public class EmpLibWriteService {
+	@Autowired
+	EmpLibMapper emplibMapper;
+	public void execute(EmpLibCommand emplibCommand, HttpServletRequest request) {
+		EmpLibDTO dto = new EmpLibDTO();
+		dto.setEmpNum(emplibCommand.getEmpNum());
+		dto.setLibNum(emplibCommand.getLibNum());
+		dto.setLibWriter(emplibCommand.getLibWriter());
+		dto.setLibSubject(emplibCommand.getLibSubject());
+		dto.setLibContent(emplibCommand.getLibContent());
+		dto.setLibPw(emplibCommand.getLibPw());
+		dto.setIpAddr(request.getRemoteAddr());
+	}
+
+}

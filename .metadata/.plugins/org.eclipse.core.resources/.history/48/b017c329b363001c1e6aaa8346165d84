@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<% 
+	String str3 = "first string";
+	String str4 = "second string";
+	String str5 = "JSP 프로그래밍";
+%>
+str3 = <%= str3 %><br/>
+str4 = <%= str4 %><br/>
+str5 = <%= str5 %><br/>
+</body>
+</html>

@@ -1,0 +1,5 @@
+package springBootTest2.domain;
+
+public class EmpLibDTO {
+
+}

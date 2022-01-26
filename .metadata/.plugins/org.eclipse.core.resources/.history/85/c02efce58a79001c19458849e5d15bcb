@@ -1,0 +1,10 @@
+package springBootTest2.service.library;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class FileDownLoadService {
+	public void fileDownLoad(String sfileName, String ofileName, HttpServletRequest request, HttpServletResponse response) {
+		
+	}
+}

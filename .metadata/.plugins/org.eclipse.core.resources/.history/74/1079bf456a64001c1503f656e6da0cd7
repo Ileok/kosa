@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import ="com.oreilly.servlet.MultipartRequest,
+                   com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import = "java.io.File" %>
+<% 
+	// 절대 경로를 가지고 옴
+	String savePath = application.getRealPath("upload");
+	out.print(savePath);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>upload.jsp</title>
+</head>
+<body>
+
+</body>
+</html>

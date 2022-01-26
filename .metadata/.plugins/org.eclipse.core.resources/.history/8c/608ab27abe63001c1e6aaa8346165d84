@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+	for(var i = 0; i <= 9; i++) {
+		document.write(i+ "<br/>");
+	}
+</script>
+</head>
+<body>
+<% // 스프리트릿을 여러 번 사용이 가능하므로 한 줄씩 사용할 수 있다.
+   // 이 안에 있는 코드는 html코드가 아니다.
+	for (int i = 0; i <= 9; i++) {
+		out.print(i + "<br/>");
+		// System.out.print("");
+	}
+%>
+<%
+	out.print("안녕하세요 <br />");
+%>
+</body>
+</html>
+<% for (int i = 0; i <= 9; i++) { %>	
+<%= (i + "<br />") %>  <!-- 표현식 -->
+<!-- out.print() -->
+<% 	} %>

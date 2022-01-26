@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="java.io.*" %>
+<% 
+	String savaPath = request.getServletContext().getRealPath("/upload");
+	int sizeLimit = 5 * 1024 * 1024;
+	MultipartRequest multi = new MultipartRequest(
+			request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+	
+	String[] fullName = request.getParameterValues("userName");
+	String userId = request.getParameter("uesrId");
+	String userPw = request.getParameter("userPw");
+	String email = request.getParameter("email");
+	String[] cp = request.getParameterValues("cp");
+	String[] like = request.getParameterValues("like");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	out.print("성 : " + fullName[0] + "<br/>");
+	out.print("이름 : " + fullName[1] + "<br/>");
+	out.print("아이디 : " + userId + "<br/>");
+	out.print("비밀번호 " + userPw + "<br/>");
+	out.print("이메일 수신 여부 : " + email + "<br/>");
+	out.print("취미 : ");
+	for (String s : cp) {
+		if(s.equals(cp[cp.length-1])) {
+			out.print(s);
+		} else {
+			out.print(s + ", ");
+		}
+	}
+	out.print("<br/>");
+	out.print("관심 분야 : ");
+	for (String s : like) {
+		if(s.equals(like[like.length-1])) {
+			out.print(s);
+		} else { 
+			out.print(s + ", ");
+		}
+	}
+	out.print("<br/>");
+	파일명 :  <%= multi.getOriginalFileName("upFile"); %><br/>
+	파일사이즈 : <% File file = multi.getFile("upFile");  
+					out.print(file.length()); %>Byte <br/>
+	<img src="upload/<%= multi.getFilesystemName("upFile") %>" alt = "그림" width = "300px"/>
+	
+%>
+</body>
+</html>

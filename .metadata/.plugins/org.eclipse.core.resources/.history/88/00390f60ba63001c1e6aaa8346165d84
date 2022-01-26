@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<% 
+	String str3 = "first string";
+	String str4 = "second string";
+	String str5 = "JSP 프로그래밍";
+	String str6 = "first string/second-string:JSP#프로그래밍";
+%>
+str3 = <%= str3 %><br/>
+str4 = <%= str4 %><br/>
+str5 = <%= str5 %><br/>
+
+str3의 길이 : <%= str3.length() %><br/>
+str4의 길이 : <%= str4.length() %><br/>
+str5의 길이 : <%= str5.length() %><br/>
+
+str3에 4번째 index에 있는 문자 : <%= str3.charAt(4) %> <br/>
+str4에 4번째 문자부터 5글자 출력 : <%= str4.substring(4,4+5) %><br/>
+str5에 4번째 index부터 출력 : <%= str5.substring(4) %> <br/>
+
+str3을  공백문자를 구분자로 문자열을 잘라 변수에 저장하고
+자른 문자열을 저장한 변수를 이용하여 값을 출력 : <br/>
+<%
+	String [] s = str3.split(" ");
+	for(int i = 0; i < s.length; i++) { %>
+		s[<%= i %>] = <%= s[i] %> <br/>
+<% } %>
+
+str6에 있는 문자열을 각 단어로 잘라 저장한 후 저장된 변수의 값을 출력<br/>
+<% 	s = str6.split(" |/|-|:|#");
+	for(int i = 0; i < s.length; i++) { %>
+		s[<%= i %>] = <%= s[i] %><br/>
+<% } %>
+<%
+	int arrayInt[] = {1,2,3,4,5};
+	int intArray[];
+	
+	// intArray에 arrayInt를 대입하자.
+	intArray = arrayInt;
+	for(int i = 0; i < intArray.length; i++) {
+%>
+		intArray[<%= i %>] = <%= intArray[i] %> <br/>
+<% }
+%>
+<hr/>
+<%
+	int matrix[][] = {{1,2,3,4},{5,6,7,8}};
+
+	out.println(matrix.length + "<br/>");
+	out.println(matrix[0].length + "<br/>");
+	out.println(matrix[1].length + "<br/>");
+	for(int i = 0; i < matrix.length; i++) {
+		for(int j = 0; j < matrix[i].length; j++) {
+			out.print("matrix["+i+"][] = " + matrix[i][j] + "<br/>");
+		}
+	}
+%>
+</body>
+</html>

@@ -1,0 +1,9 @@
+package kosaShoppingMall.mapper;
+
+import kosaShoppingMall.domain.EmployeeDTO;
+
+public interface EmployeeMapper {
+
+	Integer empInsert(EmployeeDTO dto);
+
+}

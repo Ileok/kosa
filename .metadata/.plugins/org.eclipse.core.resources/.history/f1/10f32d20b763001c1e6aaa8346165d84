@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<% 
+	String str3 = "first string";
+	String str4 = "second string";
+	String str5 = "JSP 프로그래밍";
+	String str6 = "first string/second-string:JSP#프로그래밍!";
+%>
+str3 = <%= str3 %><br/>
+str4 = <%= str4 %><br/>
+str5 = <%= str5 %><br/>
+
+str3의 길이 : <%= str3.length() %><br/>
+str4의 길이 : <%= str4.length() %><br/>
+str5의 길이 : <%= str5.length() %><br/>
+
+str3에 4번째 index에 있는 문자 : <%= str3.charAt(4) %> <br/>
+str4에 4번째 문자부터 5번째 문자까지 출력 : <%= str4.substring(4,6) %><br/>
+str5에 4번째 index부터 출력 : <%= str5.substring(4) %> <br/>
+</body>
+</html>

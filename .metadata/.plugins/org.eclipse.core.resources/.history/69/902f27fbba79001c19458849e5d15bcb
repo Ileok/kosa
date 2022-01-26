@@ -1,0 +1,22 @@
+package springBootTest2.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("goods")
+public class GoodsController {
+@Autowired
+GoodsWriteService goodsWriteService;
+
+	@RequestMapping("goodsList")
+	public String goodsList() {
+		return "thymeleaf/goods/goodsList";
+	}
+	@RequestMapping("goodsWrite")
+	public String goodsWrite(GoodsCommand goodsCommand) {
+		goodsWriteService.execute()
+		return "thymeleaf/goods/goodsForm";
+	}
+}

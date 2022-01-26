@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>selectform.html</title>
+</head>
+<body>
+<form action="selectform.jsp" method="get" name="frm">
+학력 <br/>
+<select name="edu">
+	<option selected>재학생</option>
+	<option>학사</option>
+	<option>석사</option>
+	<option>박사</option>
+</select><br/>
+<input type="submit" value="전송"/>
+</form>
+</body>
+</html>

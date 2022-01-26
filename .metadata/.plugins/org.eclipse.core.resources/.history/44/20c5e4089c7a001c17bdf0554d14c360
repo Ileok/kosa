@@ -1,0 +1,19 @@
+package springBootTest2.service.emplib;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import springBootTest2.mapper.EmpLibMapper;
+
+@Component
+@Service
+public class EmpLibWriteService {
+	@Autowired
+	EmpLibMapper emplibMapper;
+	public void execute(Model model) {
+		
+	}
+
+}

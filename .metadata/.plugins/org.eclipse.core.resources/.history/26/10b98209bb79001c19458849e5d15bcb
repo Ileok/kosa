@@ -1,0 +1,7 @@
+package springBootTest2.service.goods;
+
+@Component
+@Service
+public class GoodsWriteService {
+	
+}

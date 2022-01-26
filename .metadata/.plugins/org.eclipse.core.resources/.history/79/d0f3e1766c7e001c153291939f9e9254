@@ -1,0 +1,10 @@
+package kosaShoppingMall.service.employee;
+
+import org.codehaus.plexus.component.annotations.Component;
+import org.springframework.stereotype.Service;
+
+@Component
+@Service
+public class EmployeeListService {
+
+}

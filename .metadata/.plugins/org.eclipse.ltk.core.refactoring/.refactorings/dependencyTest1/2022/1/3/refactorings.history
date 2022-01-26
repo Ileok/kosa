@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy source folder &apos;src&apos; to &apos;dependencyTest2&apos;&#x0D;&#x0A;- Original project: &apos;dependencyTest1&apos;&#x0D;&#x0A;- Destination element: &apos;dependencyTest2&apos;&#x0D;&#x0A;- Original element: &apos;dependencyTest1/src&apos;" description="Copy source folder" destination="=dependencyTest2" element1="/src" flags="6" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyRoots" roots="1" stamp="1641878065716" version="1.0"/>
+</session>

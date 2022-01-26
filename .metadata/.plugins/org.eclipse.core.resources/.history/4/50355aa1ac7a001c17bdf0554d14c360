@@ -1,0 +1,16 @@
+package springBootTest2.service.emplib;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Component
+@Service
+public class EmpLibDeleteService {
+	@Autowired
+	EmpLibMapper emplibMapper;
+	public void execute(Integer libNum) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

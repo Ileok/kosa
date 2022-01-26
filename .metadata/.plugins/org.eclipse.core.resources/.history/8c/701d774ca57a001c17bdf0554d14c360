@@ -1,0 +1,61 @@
+package springBootTest2.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import springBootTest2.command.EmpLibCommand;
+import springBootTest2.service.emplib.EmpLibInfoService;
+import springBootTest2.service.emplib.EmpLibListService;
+import springBootTest2.service.emplib.EmpLibNumberService;
+import springBootTest2.service.emplib.EmpLibWriteService;
+
+@Controller
+@RequestMapping("emplib")
+public class EmpLibController {
+	@Autowired
+	EmpLibWriteService emplibWriteService;
+	@Autowired
+	EmpLibNumberService emplibNumberService;
+	@Autowired
+	EmpLibListService emplibListService;
+	@Autowired
+	EmpLibInfoService emplibInfoService;
+	
+	@RequestMapping("emplibModify")
+	public String libModify(@RequestParam(value="num") Integer libNum,
+			@RequestParam(value="libPw") String libPw, Model model,
+			HttpSession session) {
+		model.addAttribute("newLineChar", '\n');
+		String path = libraryModifyService.execute(libNum,libPw,model,session);
+		return path;
+	}
+	@RequestMapping("emplibInfo")
+	public String EmpLibInfo(@RequestParam(value="num") Integer libNum,
+			Model model,HttpSession session) {
+		emplibInfoService.execute(libNum, model, session);
+		return "thymeleaf/emplib/emplibInfo";
+	}
+	@RequestMapping("emplibList")
+	public String EmpLibList(Model model) {
+		emplibListService.execute(model);
+		return "thymeleaf/emplib/emplibList";
+	}
+	
+	@RequestMapping("emplibForm")
+	public String EmpLibForm(HttpSession session, Model model) {
+		emplibNumberService.execute(session, model);
+		return "thymeleaf/emplib/emplibForm";
+	}
+	
+	@RequestMapping("emplibWrite")
+	public String EmpLibWrite(EmpLibCommand emplibCommand, HttpServletRequest request) {
+		emplibWriteService.execute(emplibCommand, request);
+		return "redirect:emplibList";
+	}
+}

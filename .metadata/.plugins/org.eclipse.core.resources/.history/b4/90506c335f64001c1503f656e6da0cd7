@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>rcform.html</title>
+</head>
+<body>
+<form action="rcform.jsp" method="post" name="textform"></form>
+관심분야 : <br/>
+<input type="checkbox" name="cp" value="엔터테인먼트"/>엔터테인먼트
+<input type="checkbox" name="cp" value="컴퓨터/인터넷"/>컴퓨터/인터넷
+<input type="checkbox" name="cp" value="경제/비즈니스"/>경제/비즈니스
+<input type="checkbox" name="cp" value="스포츠/건강"/>스포츠/건강
+<input type="checkbox" name="cp" value="여행/관광"/>여행/관광 
+<br/>
+<input type="submit" value="전송"/>
+</body>
+</html>

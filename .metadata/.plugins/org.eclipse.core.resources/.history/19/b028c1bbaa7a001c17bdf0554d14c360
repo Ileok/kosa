@@ -1,0 +1,28 @@
+package springBootTest2.service.emplib;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import springBootTest2.command.EmpLibCommand;
+import springBootTest2.domain.AuthInfo;
+import springBootTest2.domain.EmpLibDTO;
+import springBootTest2.mapper.EmpLibMapper;
+
+@Component
+@Service
+public class EmpLibUpdateService {
+	@Autowired
+	EmpLibMapper emplibMapper;
+	
+	public String execute(EmpLibCommand emplibCommand, HttpSession session, Model model) {
+		String path = "redirect:libInfo?num="+emplibCommand.getLibNum();
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		EmpLibDTO dto = emplibCommand.selectOne(emplibCommand.getLibNum());
+		return path;
+	}
+	
+}

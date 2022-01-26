@@ -1,0 +1,20 @@
+package springBootTest2.service.emplib;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import springBootTest2.command.EmpLibCommand;
+
+@Component
+@Service
+public class EmpLibUpdateService {
+	@Autowired
+	public String execute(EmpLibCommand emplibCommand, HttpSession session, Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

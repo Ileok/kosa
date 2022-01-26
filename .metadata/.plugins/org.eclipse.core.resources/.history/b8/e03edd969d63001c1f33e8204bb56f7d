@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="UTF-8"%>
+<%@ page import="point.Point" %>
+<%
+	Point p1 = new Point();
+	Point p2 = new Point(10, 20);
+	int [] j = new int[3];
+	j[0] = 10;
+	j[1] = 20;
+	j[2] = 30;
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+p1's x = <%= p1.getX() %> <br/>
+p1's y = <%= p1.getY() %> <br/>
+p2's x = <%= p2.getX() %> <br/>
+p2's y = <%= p2.getY() %> <br/>
+j[0] = <%= j[0] %> <br/>
+j[1] = <%= j[1] %> <br/>
+j[2] = <%= j[2] %> <br/>
+<%
+	for(int i = 1; i <= 10; i++) { %>
+		<tr><th>이숭무</th><th>성남시 분당구</th><th>010-7146-1970</th></tr>
+<% } %>
+<% for (int i = 0; i < j.length; i++) { %>
+		j[<%= i %>] = <%= j[i] %> <br/>
+<% } %>
+
+<table border=1 width="640">
+<colgroup>
+	<col width = 20%>
+	<col width = 50%>
+	<col width = 30%>
+</colgroup>
+<tbody>
+<tr><th>이름</th><th>주소</th><th>전화번호</th></tr>
+
+</tbody>
+</table>
+</body>
+</html>

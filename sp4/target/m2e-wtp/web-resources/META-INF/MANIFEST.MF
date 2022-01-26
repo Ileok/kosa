@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 17
+Implementation-Title: sp4 Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: sp4
+Implementation-URL: http://www.example.com
+Created-By: Maven Integration for Eclipse
+

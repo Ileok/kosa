@@ -1,0 +1,19 @@
+package springBootTest2.service.emplib;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+@Component
+@Service
+public class EmpLibModifyService {
+	@Autowired
+	EmpLibMapper emplibMapper;
+	public String execute(Integer libNum, String libPw, Model model, HttpSession session) {
+		
+		return null;
+	}
+
+}

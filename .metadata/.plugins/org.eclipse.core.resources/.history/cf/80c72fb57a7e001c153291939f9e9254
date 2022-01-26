@@ -1,0 +1,19 @@
+package kosaShoppingMall.service.employee;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kosaShoppingMall.command.EmployeeCommand;
+
+@Component
+@Service
+public class EmployeeDeleteService {
+	@Autowired
+	
+	public String execute(EmployeeCommand employeeCommand, Model model) {
+		String path = "thymeleaf/employee/empList";
+	}
+
+}

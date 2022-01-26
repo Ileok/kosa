@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springBootTest2.mapper.EmpLibMapper">
+<sql id="baseColumns">
+	lib_num, lib_writer, lib_subject, lib_content, emp_num, ip_addr, lib_pw
+</sql>	
+
+<sql id="AutoNum">
+	select nvl(max(substr(lib_num,5)),100000) + 1 from member
+</sql>
+
+</mapper>

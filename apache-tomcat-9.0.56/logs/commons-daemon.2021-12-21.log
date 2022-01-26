@@ -1,0 +1,4 @@
+[2021-12-21 15:23:19] [info]  [ 5940] Apache Commons Daemon procrun (1.2.4.0 64-bit) started.
+[2021-12-21 15:23:19] [info]  [ 5940] Installing service 'Tomcat9' name 'Apache Tomcat 9.0 Tomcat9'.
+[2021-12-21 15:23:19] [info]  [ 5940] Service 'Tomcat9' installed.
+[2021-12-21 15:23:19] [info]  [ 5940] Apache Commons Daemon procrun finished.

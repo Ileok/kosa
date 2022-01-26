@@ -1,0 +1,7 @@
+package springBootTest2.service.emplib;
+
+@Component
+@Service
+public class emplibUpdateService {
+	
+}

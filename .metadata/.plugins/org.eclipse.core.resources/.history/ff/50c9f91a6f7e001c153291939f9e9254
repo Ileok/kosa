@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script>
+$(function(){
+	$("#delete").click(function(){
+		location.href="empDelete?id=[[${dto.empId}]]&empPw="+$("#empPw").val()
+	});
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+직원 상세 페이지입니다.<br />
+직원 이름 : [[${dto.empName }]]<br />
+직원 아이디 : [[${dto.empId }]]<br />
+직원 주소 : [[${dto.empAddr}]]<br />
+직원 연락처 : [[${dto.empPhone }]]<br />
+<a th:href="empList">직원 리스트</a> 
+<th:block th:if="${dto.empId == empId}">
+<form action="empModify" method="post" id="frm">
+<input type="hidden" name="empId" th:value="${dto.empId}" />
+게시글 비밀번호 : <input type="password" name="empPw" id="empPw" required="required"/>
+<span th:if="${err_pw != null}" th:text="${err_pw}" style="color:red"></span>
+<br />
+<input type="submit" value="수정"/>
+<input type="button" value="삭제"  id="delete"/>
+</form>
+</th:block>
+</body>
+</html>

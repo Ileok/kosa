@@ -1,0 +1,11 @@
+package springBootTest2.domain;
+
+public class EmpLibDTO {
+	Integer libNum;
+	String libWriter;
+	String libSubject;
+	String libContent;
+	Integer empNum;
+	String ipAddr;
+	String libPw;
+}

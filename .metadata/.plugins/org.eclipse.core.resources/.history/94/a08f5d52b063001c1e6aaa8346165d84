@@ -1,0 +1,120 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="UTF-8"%>
+<%@ page import="point.Point" %>
+<%
+	Point p1 = new Point();
+	Point p2 = new Point(10, 20);
+/* 	int [] j = new int[3];
+	j[0] = 10;
+	j[1] = 20;
+	j[2] = 30; */
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Point</title>
+<script>
+	// 구구단 3단 출력
+/* 	var i = 1
+	while(i < 10) {
+		document.write("3 X " + i + " = " + (3*i) + "<br/>")
+		i++
+	} */
+/* 	var std = 3
+	var edd = 6
+	var stg = 4
+	var edg = 7
+	var dan = std
+	while(dan <= edd) {
+		var gop = stg
+		while(gop <= edg) {
+		document.write(dan + " X " + gop + " = " + (dan*gop) + "<br/>")
+		gop++
+		}
+		dan++
+	} */
+</script>
+</head>
+<body>
+<%-- <% int i = 1;
+   while (i < 10) { %>
+   3 X <%= i %> = <%= (3*i) %><br/>
+<% i++; 
+	} %> --%>
+<%-- <% int std = 3;
+   int edd = 6;
+   int stg = 4;
+   int edg = 7;
+   int dan = std;
+   while (dan <= edd) {
+	   int gop = stg;
+	   while (gop <= edg) { %>		  
+	   <%= dan %> X <%= gop %> = <%= (dan*gop) %> <br/>
+	   <% gop++; 
+	   }
+	   dan++;
+   }
+   %> --%>
+<%--    <br/>do while <br/>
+<%    dan = std;
+	do{
+		gop = stg;
+		do{
+%>
+		<%=dan %> X <%= gop %> = <%= dan*gop  %> <br/>
+<% 		gop++;
+		} while(gop <= edg);
+		dan++;
+	} while(dan <= edd);
+%> --%>
+
+<!--  1단부터 9단 중 짝수단만 출력 단 증가는 1씩 -->
+<%
+	for(int i = 1; i <= 9; i++) {
+		for(int j = 1; j <= 9; j++) {
+			if(i % 2 != 0) {
+				continue;
+			} %>
+			<%= i %> X <%= j %> = <%= j*j %> <br/>
+
+<%		}
+	}
+%>
+
+
+<%-- p1's x = <%= p1.getX() %> <br/>
+p1's y = <%= p1.getY() %> <br/>
+p2's x = <%= p2.getX() %> <br/>
+p2's y = <%= p2.getY() %> <br/>
+j[0] = <%= j[0] %> <br/>
+j[1] = <%= j[1] %> <br/>
+j[2] = <%= j[2] %> <br/>
+<% for (int i = 0; i < j.length; i++) { %>
+		j[<%= i %>] = <%= j[i] %> <br/>
+<% } %>
+<%
+	String location = "서울";
+	switch(location) {
+		case "서울" : out.print("02<br/>"); break;
+		case "경기도" : out.print("031<br/>"); break;
+		case "인천" : out.print("032<br/>"); break;
+		default : out.print("경인지역이 아닙니다.");
+	}
+%>
+<table border=1 width="640">
+<colgroup>
+	<col width = 20%>
+	<col width = 50%>
+	<col width = 30%>
+</colgroup>
+<tbody>
+<tr><th>이름</th><th>주소</th><th>전화번호</th></tr>
+<%
+	for(int i = 1; i <= 10; i++) { %>
+		<tr><th>이숭무</th><th>성남시 분당구</th><th>010-7146-1970</th></tr>
+<% } %>
+</tbody>
+</table> --%>
+</body>
+</html>

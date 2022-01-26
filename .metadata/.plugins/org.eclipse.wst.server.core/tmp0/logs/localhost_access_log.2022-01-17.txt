@@ -1,0 +1,10 @@
+127.0.0.1 - - [17/Jan/2022:12:37:26 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:26 +0900] "GET /MVCProject1/ HTTP/1.1" 200 844
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:26 +0900] "GET /MVCProject1/images/img1.jpg HTTP/1.1" 404 3131
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:32 +0900] "POST /MVCProject1/loginPro.login HTTP/1.1" 200 956
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:32 +0900] "GET /MVCProject1/images/img1.jpg HTTP/1.1" 404 3131
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:34 +0900] "POST /MVCProject1/loginPro.login HTTP/1.1" 200 956
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:34 +0900] "GET /MVCProject1/images/img1.jpg HTTP/1.1" 404 3131
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:35 +0900] "POST /MVCProject1/loginPro.login HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:35 +0900] "GET /MVCProject1/ HTTP/1.1" 200 373
+0:0:0:0:0:0:0:1 - - [17/Jan/2022:12:37:37 +0900] "GET /MVCProject1/images/img1.jpg HTTP/1.1" 404 3131

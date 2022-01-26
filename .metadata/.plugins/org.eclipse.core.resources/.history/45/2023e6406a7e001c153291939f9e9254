@@ -1,0 +1,5 @@
+package kosaShoppingMall.mapper;
+
+public interface EmployeeMapper {
+
+}

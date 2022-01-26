@@ -1,0 +1,9 @@
+package springBootTest2.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("goods")
+public class GoodsController {
+	
+}
