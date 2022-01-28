@@ -1,0 +1,14 @@
+package kosaShoppingMall.service.member;
+
+import org.springframework.ui.Model;
+
+import kosaShoppingMall.command.MemberCommand;
+
+public class MemberWriteService {
+
+	public void execute(MemberCommand memberCommand, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

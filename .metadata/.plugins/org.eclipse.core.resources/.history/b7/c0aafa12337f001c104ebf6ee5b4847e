@@ -1,0 +1,48 @@
+package kosaShoppingMall.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import kosaShoppingMall.command.MemberCommand;
+import kosaShoppingMall.service.member.MemberInfoService;
+import kosaShoppingMall.service.member.MemberListService;
+import kosaShoppingMall.service.member.MemberNumService;
+import kosaShoppingMall.service.member.MemberWriteService;
+
+@Controller
+@RequestMapping("mem")
+public class MemberController {
+	@Autowired
+	MemberNumService memberNumService;
+	@Autowired
+	MemberWriteService memberWriteService;
+	@Autowired
+	MemberListService memberListService;
+	@Autowired
+	MemberInfoService memberInfoService;
+	
+	@RequestMapping("memberInfo")
+	public String memberInfo(@RequestParam(value="num") String memNum, Model model) {
+		memberInfoService.execute(memNum, model);
+		return "thymeleaf/member/memberInfo";
+	}
+	@RequestMapping("memberList")
+	public String memberList(Model model) {
+		memberListService.execute(model);
+		return "thymeleaf/member/memberList";
+	}
+	@RequestMapping(value="memberRegist", method=RequestMethod.GET)
+	public String memberForm(Model model) {
+		memberNumService.execute(model);
+		return "thymeleaf/member/memberForm";
+	}
+	@RequestMapping(value="memberRegist", method=RequestMethod.POST)
+	public String memberRegist(MemberCommand memberCommand, Model model) {
+		String path = memberWriteService.execute(memberCommand, model);
+		return path;
+	}
+}

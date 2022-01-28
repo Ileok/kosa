@@ -1,0 +1,11 @@
+package kosaShoppingMall.mapper;
+
+import kosaShoppingMall.domain.MemberDTO;
+
+public interface MemberMapper {
+
+	String numberGenerate();
+
+	void memInsert(MemberDTO dto);
+
+}

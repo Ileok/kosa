@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+등록페이지<br/>
+<form action="memberRegist" method="post">
+회원번호 : <input type="text" name="memNum" readonly="readonly" 
+			th:value="${memNum }"/>(자동부여)<br/>
+회원아이디 : <input type="text" name="memId" th:value="${memberCommand.memId }"/><br/>
+회원비밀번호 : <input type="password" name="memPw" th:value="${memPw }"/><br/>
+			<span th:text="${errPw}" style="color:red"></span><br/>
+회원비밀번호확인 : <input type="password" name="memPwCon" th:value="${memPwCon }"/><br/>
+회원이름 : <input type="text" name="memName" th:value="${memberCommand.memName }"/><br/>
+회원주소 : <input type="text" name="memAddr" th:value="${memberCommand.memAddr }"/><br/>
+등록일 : <input type="date" name="memRegist" th:value="${memberCommand.memRegist }"/><br/>
+성별 : <input type="radio" name="gender" value="F" checked/>여자
+      <input type="radio" name="gender" value="M" />남자<br /><br/>
+연락처 : <input type="text" name="memPhone" th:value="${memberCommand.memPhone }"/><br/>
+생년월일 : <input type="date" name="memBirth" th:value="${memberCommand.memBirth }"/><br/>
+회원이메일 : <input type="text" name="memEmail" th:value="${memberCommand.memEmail }"/><br/>
+<input type="submit" value="회원 등록">
+</form>
+</body>
+</html>

@@ -1,5 +1,0 @@
-package springBootTest2.mapper;
-
-public interface GoodsMapper {
-
-}

@@ -1,0 +1,24 @@
+package kosaShoppingMall.command;
+
+import lombok.Data;
+import oracle.sql.DATE;
+
+@Data
+public class MemberCommand {
+	String memNum;
+	String memId;
+	String memPw;
+	String memPwCon;
+	String memName;
+	String memAddr;
+	DATE memRegist;
+	String gender;
+	String memPhone;
+	DATE memBirth;
+	String memOk;
+	String memEmail;
+	
+	public boolean isMemPwEqualsMemPwCon() {
+		return memPw.equals(memPwCon);
+	}
+}

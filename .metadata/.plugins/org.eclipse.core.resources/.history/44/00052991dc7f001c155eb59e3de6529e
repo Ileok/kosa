@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+   $(function(){
+      $("#delete").click(function(){
+         $.ajax({
+               type:"post",
+               url: "../memDelete",
+               data: {"num":"[[${dto.memberNum}]]"},
+               success : function(result){ //next페이지가 정상적으로 열렸을 때
+                  alert(result);
+                  if(result.trim() == '1'){
+                     alert("회원이 정상적으로 삭제되었습니다.");
+                     location.href="../memList";
+                  }else{
+                     altert("회원이 정상적으로 삭제되지 않았습니다.")
+                     return false;
+                  }
+               },
+               error : function(){
+                  alert("에러 발생");
+                  return;
+               }
+            });
+      });
+   });
+   function del(){
+      $.ajax({
+            type:"post",
+            url: "../memDelete",
+            data: {"num":"[[${dto.memberNum}]]"},
+            success : function(result){ //next페이지가 정상적으로 열렸을 때
+               alert(result);
+               if(result.trim() == '1'){
+                  alert("회원이 정상적으로 삭제되었습니다.");
+                  location.href="../memList";
+               }else{
+                  altert("회원이 정상적으로 삭제되지 않았습니다.")
+                  return false;
+               }
+            },
+            error : function(){
+               alert("에러 발생");
+               return;
+            }
+            
+         });
+         
+      };
+   
+</script>
+<body>
+<title>Insert title here</title>
+</head>
+<body>
+회원 상세 페이지입니다.<br />
+회원 번호 : [[${dto.memNum}]]<br/>
+회원 이름 : [[${dto.memName }]]<br />
+회원 아이디 : [[${dto.memId }]]<br />
+회원 주소 : [[${dto.memAddr }]]<br />
+회원 연락처 : [[${dto.memPhone }]]<br />
+회원 등록일 : [[${#dates.format(dto.memRegist,'yyyy-MM-dd')}]]<br/>
+회원 성별 : <span th:if="${dto.gender == 'M'}" th:text="남자" ></span>
+     <span th:if="${dto.gender == 'F'}" th:text="여자" ></span><br/>
+회원 생년월일 : [[${#dates.format(dto.memBirth,'yyyy-MM-dd')}]]<br/>
+회원 이메일 : [[${dto.memEmail}]]<br/>
+
+<!-- 
+<form action="memberModify" method="post" id="frm">
+<input type="hidden" name="memNum" th:value="${dto.memNum}" />
+비밀번호 : <input type="password" name="memPw" id="memPw" required="required"/><br/>
+<span th:text="${errPw}" style="color:red"></span><br/>
+<input type="submit" value="수정"/>
+<input type="button" value="삭제"  id="delete"/> <br/>
+<a th:href="memberList">회원 리스트</a>  -->
+
+<form action="../memberModify" method="get">
+<input type="hidden" name="memNum" th:value="${dto.memNum}">
+<input type="submit" value="회원 수정">
+<input type="button" value="jquery삭제" id="delete">
+<input type="button" value="function삭제" onclick="del();">
+</form>
+<!-- pathVariable로 할때는 주소 하나씩 줄여줘야 댄다 -->
+<!-- href="@{../memDelete(num=${dto.memberNum})}" -->
+
+<a href="javascript.del();">삭제</a>
+
+
+</body>
+</html>

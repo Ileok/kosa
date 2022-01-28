@@ -1,5 +1,0 @@
-package springBootTest2.service.library;
-
-public class FileDownLoadService {
-
-}

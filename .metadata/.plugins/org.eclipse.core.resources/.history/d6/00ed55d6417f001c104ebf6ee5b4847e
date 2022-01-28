@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="memberUpdate" method="post">
+회원 번호 : <input type="text" id="memNum" th:value="${dto.memNum}" readonly="readonly" /> <br/>
+회원 이름 : <input type="text" id="memName" th:value="${dto.memName}" required="required"/><br />
+회원 아이디 : <input type="text" id="memId" th:value="${dto.memId}" required="required"/><br />
+회원 비밀번호 : <input type="password" name="memPw" required="required"/><br/>
+	<span th:text="${errPw}" style="color:red"></span><br/>
+비밀번호 확인 : <input type="password" name="memPwCon" required="required"/><br/>
+회원 주소 : <input type="text" id="memAddr" th:value="${dto.memAddr}" required="required"/><br />
+회원 연락처 : <input type="text" id="memPhone" th:value="${dto.memPhone}" required="required"/><br />
+회원 등록일 : <input type="date" th:value="${#dates.format(dto.memRegist,'yyyy-MM-dd') }" name="memRegist" 
+			required="required"/><br/>
+회원 성별 : <input type="radio" name="gender" value="F" 
+			 th:checked="${dto.gender=='F'}" />여자
+          <input type="radio" name="gender" value="M" 
+             th:checked="${dto.gender=='M'}"  />남자<br />
+회원 생년월일 : <input type="date" th:value="${#dates.format(dto.memBirth,'yyyy-MM-dd') }" name="memBirth" 
+			required="required"/><br/><br/>
+회원 이메일 : <input type="text" id="memEmail" th:value="${dto.memEmail}" required="required"/><br/>
+<input type="submit" value="수정"/>
+</form>
+</body>
+</html>

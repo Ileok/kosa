@@ -3,6 +3,10 @@ package kosaShoppingMall.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,16 +35,28 @@ public class EmployeeController {
 	@Autowired
 	EmployeeDeleteService employeeDeleteService;
 	
-	@RequestMapping(value="empDelete", method = RequestMethod.GET)
-	public String empDelete(EmployeeCommand employeeCommand, Model model) {
-		String path = employeeDeleteService.execute(employeeCommand,model);
-		return path;
+	@ModelAttribute
+	EmployeeCommand setEmployeeCommand() {
+		return new EmployeeCommand();
 	}
 	
+	@RequestMapping("empDelete")
+	public String empDelete(@RequestParam(value="id") String empId, Model model) {
+		employeeDeleteService.execute(empId, model);
+	    //return "redirect:memList"; : ajax는 바로 redirect 불가능. next page 무적권 필요.
+	    return "thymeleaf/employee/empDel";
+	}
+	
+//	@RequestMapping(value="empDelete", method = RequestMethod.GET)
+//	public String empDelete(EmployeeCommand employeeCommand, Model model) {
+//		String path = employeeDeleteService.execute(employeeCommand,model);
+//		return path;
+//	}
+	
 	@RequestMapping(value = "empUpdate", method = RequestMethod.POST)
-	public String empUpdate(EmployeeCommand employeeCommand) {
-		employeeUpdateService.execute(employeeCommand);
-		return "redirect:empInfo?id="+employeeCommand.getEmpId();
+	public String empUpdate(EmployeeCommand employeeCommand, Model model) {
+		String path = employeeUpdateService.execute(employeeCommand, model);
+		return path;
 	}
 	
 	@RequestMapping("empModify") 
@@ -49,8 +65,8 @@ public class EmployeeController {
 		return path;
 		
 	}
-	@RequestMapping("empInfo")
-	public String empInfo(@RequestParam(value="id") String empId, 
+	@RequestMapping("empInfo/{id}")
+	public String empInfo(@PathVariable(value="id") String empId, 
 			Model model) {
 		employeeInfoService.execute(empId, model);
 		return "thymeleaf/employee/empInfo";
@@ -61,16 +77,25 @@ public class EmployeeController {
 		employeeListService.execute(model);
 		return "thymeleaf/employee/empList";
 	}
+	@RequestMapping("empJoin")
+	public String empJoin() {
+		return "thymeleaf/employee/empForm";
+	}
 	@RequestMapping(value = "empWrite", method = RequestMethod.GET)
-	public String empWrite1() {
+	public   String empWrite1() {
 		return "thymeleaf/employee/empForm";
 	}
 	@RequestMapping(value = "empWrite", method = RequestMethod.POST)
-	public String empWrite(EmployeeCommand employeeCommand) {
-		if(!employeeCommand.isEmpPwEqualsEmpPwCon()) {
+	public String empWrite(@Validated EmployeeCommand employeeCommand,
+			BindingResult result) {
+		if (result.hasErrors()) {
 			return "thymeleaf/employee/empForm";
 		}
-		employeeWriteService.execute(employeeCommand); 
+		if(!employeeCommand.isEmpPwEqualsEmpPwCon()) {
+			result.rejectValue("empPwCon", "employeeCommand.empPwCon", "비밀번호 확인이 다릅니다.");
+			return "thymeleaf/employee/empForm";
+		}
+		employeeWriteService.execute(employeeCommand);
 		return "redirect:/";
 	}
 }

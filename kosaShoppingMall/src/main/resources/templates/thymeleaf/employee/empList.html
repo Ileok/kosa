@@ -6,12 +6,12 @@
 </head>
 <body>
 직원 리스트 페이지입니다.<br/>
-
+사원 수 : [[${list.size()}]]
 <table border = 1>
    <tr><td>직원이름</td><td>아이디</td><td>주소</td><td>연락처</td></tr>
    <th:block th:each = "dto : ${list}"> <!-- c 태그에 있는 foreach와 비슷하지요? 네!-->
-   <tr><td><a th:href="@{empInfo(id=${dto.empId})}">[[${dto.empName }]]</a></td>
-      <td><a th:href="@{empInfo(id=${dto.empId})}">[[${dto.empId}]]</a></td>
+   <tr><td><a th:href="|empInfo/${dto.empId}|">[[${dto.empName }]]</a></td>
+      <td><a th:href="|empInfo/${dto.empId}|">[[${dto.empId}]]</a></td>
       <td>[[${dto.empAddr }]]</td>
       <td>[[${dto.empPhone }]]</td>
    </tr>

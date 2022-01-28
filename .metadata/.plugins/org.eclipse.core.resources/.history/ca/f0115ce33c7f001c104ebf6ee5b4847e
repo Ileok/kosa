@@ -1,0 +1,5 @@
+package kosaShoppingMall.service.member;
+
+public class MemberUpdateService {
+
+}

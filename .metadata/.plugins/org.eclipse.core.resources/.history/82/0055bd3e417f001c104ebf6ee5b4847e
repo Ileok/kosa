@@ -1,0 +1,52 @@
+package kosaShoppingMall.service.member;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kosaShoppingMall.command.MemberCommand;
+import kosaShoppingMall.domain.MemberDTO;
+import kosaShoppingMall.mapper.MemberMapper;
+
+@Component
+@Service
+public class MemberUpdateService {
+	@Autowired
+	MemberMapper memberMapper;
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	public String execute(MemberCommand memberCommand, Model model) {
+		String path = "redirect:memberInfo?num="+memberCommand.getMemNum();
+		if(!memberCommand.isMemPwEqualsMemPwCon()) {
+			MemberDTO dto = memberMapper.selectOne(memberCommand.getMemNum());
+			model.addAttribute("errPw","비밀번호가 일치하지 않습니다.");
+			model.addAttribute("dto", dto);
+			/*
+			 Command를 인자값으로 받아온 경우 addAttribute를 사용하지 않아도 값 전달이 가능하다.
+			 */
+			path = "thymeleaf/member/memberModify";
+		} else {
+		String memPw = passwordEncoder.encode(memberCommand.getMemPw());
+		System.out.println(memPw);
+		MemberDTO dto = new MemberDTO();
+		dto.setMemNum(memberCommand.getMemNum());
+		dto.setMemId(memberCommand.getMemId());
+		dto.setMemPw(memPw);
+		dto.setMemName(memberCommand.getMemName());
+		dto.setMemAddr(memberCommand.getMemAddr());
+		dto.setMemRegist(memberCommand.getMemRegist());
+		dto.setGender(memberCommand.getGender());
+		dto.setMemPhone(memberCommand.getMemPhone());
+		dto.setMemBirth(memberCommand.getMemBirth());
+		dto.setMemEmail(memberCommand.getMemEmail());
+		System.out.println(dto.getMemNum() + ", " + dto.getMemId() + ", " + dto.getMemPw() + ", " + dto.getMemName() + ", " + dto.getMemAddr() + ", " + dto.getMemRegist()
+		 + ", " + dto.getGender() + ", " + dto.getMemPhone() + ", " + dto.getMemBirth() + ", " + dto.getMemEmail());
+		memberMapper.memUpdate(dto);
+		}
+		return path;
+	}
+	
+}

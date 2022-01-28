@@ -1,0 +1,30 @@
+package kosaShoppingMall.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import kosaShoppingMall.command.MemberCommand;
+import kosaShoppingMall.service.member.MemberWriteService;
+
+@Controller
+@RequestMapping("mem")
+public class MemberController {
+	@Autowired
+	MemberWriteService memberWriteService;
+	
+	@RequestMapping("memList")
+	public String memList() {
+		return "thymeleaf/member/memberList";
+	}
+	@RequestMapping(value="memberRegist", method=RequestMethod.GET)
+	public String memberForm() {
+		return "thymeleaf/member/memberForm";
+	}
+	@RequestMapping(value="memberRegist", method=RequestMethod.POST)
+	public String memberRegist(MemberCommand memberCommand) {
+		memberWriteService.execute(memberCommand);
+		return "redirect:memList";
+	}
+}

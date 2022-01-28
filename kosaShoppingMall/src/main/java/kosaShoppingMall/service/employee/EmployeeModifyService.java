@@ -22,10 +22,10 @@ public class EmployeeModifyService {
 		EmployeeDTO dto = employeeMapper.selectOne(empId);
 		if(passwordEncoder.matches(empPw, dto.getEmpPw())) {
 			path = "thymeleaf/employee/empModify";
-			model.addAttribute("dto", dto);
+			model.addAttribute("employeeCommand", dto);
 		} else { 
 			model.addAttribute("errPw","비밀번호가 일치하지 않습니다.");
-			model.addAttribute("dto", dto);
+			model.addAttribute("employeeCommand", dto);
 			path = "thymeleaf/employee/empInfo";
 		}
 		return path;

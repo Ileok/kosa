@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+회원관리<br/>
+<table border = 1>
+   <tr><td>회원번호</td><td>이름</td><td>주소</td><td>연락처</td></tr>
+   <th:block th:each = "dto : ${list}"> <!-- c 태그에 있는 foreach와 비슷하지요? 네!-->
+   <tr><td><a th:href="@{memberInfo(num=${dto.memNum})}">[[${dto.memNum }]]</a></td>
+      <td><a th:href="@{memberInfo(num=${dto.memNum})}">[[${dto.memName}]]</a></td>
+      <td>[[${dto.memAddr }]]</td>
+      <td>[[${dto.memPhone }]]</td>
+   </tr>
+   </th:block>   
+</table>
+<a href="memberRegist">회원 등록</a>
+</body>
+</html>

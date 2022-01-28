@@ -1,0 +1,13 @@
+package kosaShoppingMall.command;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("mem")
+public class MemberController {
+	@RequestMapping("memList")
+	public String memList() {
+		return "thymeleaf/member/memberForm";
+	}
+}
