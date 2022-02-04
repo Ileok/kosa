@@ -1,0 +1,5 @@
+package kosaShoppingMall.service.help;
+
+public class FindIdService {
+
+}

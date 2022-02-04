@@ -1,0 +1,5 @@
+package kosaShoppingMall.controller;
+
+public class MemberJoinController {
+
+}

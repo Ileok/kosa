@@ -1,0 +1,42 @@
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+
+import kosaShoppingMall.command.EmployeeCommand;
+import kosaShoppingMall.domain.AuthInfo;
+import kosaShoppingMall.domain.EmployeeDTO;
+import kosaShoppingMall.mapper.EmployeeShipMapper;
+
+@Component
+@Service
+public class EmpPasswordService {
+	@Autowired
+	EmployeeShipMapper empShipMapper;
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	public String execute(EmployeeCommand empCommand ,
+			BindingResult result , HttpSession session) {
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		if(passwordEncoder.matches(empCommand.getEmpPw(), authInfo.getUserPw())) {
+			if(empCommand.getEmpPw() == "" || !empCommand.isEmpPwEqualsEmpPwCon() ) {
+				result.rejectValue("memberPw", "memberCommand.memberPw", 
+						"비밀번호확인이 틀립니다.");
+				return "thymeleaf/membership/memberPassCon";
+			}
+			String newPw = passwordEncoder.encode(empCommand.getEmpPw());
+			EmployeeDTO dto = new EmployeeDTO();
+			dto.setEmpId(authInfo.getUserId());
+			dto.setEmpPw(newPw);
+			empShipMapper.updatePassword(dto);
+			authInfo.setUserPw(newPw);
+			return "redirect:memberDetail";
+		}else {
+			result.rejectValue("oldPw", "memberCommand.oldPw", "현재 비밀번호가 틀립니다.");
+			return "thymeleaf/membership/memberPassCon";
+		}
+	}
+}

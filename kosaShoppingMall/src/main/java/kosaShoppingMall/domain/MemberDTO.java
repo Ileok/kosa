@@ -1,22 +1,24 @@
 package kosaShoppingMall.domain;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
-import java.util.Date;
 
 @Data
 @Alias(value = "memDTO")
 public class MemberDTO {
-	String memNum;
-	String memId;
-	String memPw;
-	String memName;
-	String memAddr;
-	Date memRegist;
+	String memberNum;
+	String memberId;
+	String memberPw;
+	String memberPwCon;
+	String memberName;
+	String memberAddr;
+	Timestamp memberRegist;
 	String gender;
-	String memPhone;
-	Date memBirth;
-	String memOk;
-	String memEmail;
+	String memberPhone;
+	Date memberBirth;
+	String memberEmail;
 }

@@ -12,9 +12,9 @@ import kosaShoppingMall.mapper.MemberMapper;
 public class MemberNumService {
 	@Autowired
 	MemberMapper memberMapper;
-	
 	public void execute(MemberCommand memberCommand) {
-		String memNum = memberMapper.numberGenerate();
-		memberCommand.setMemNum(memNum);
+		String memberNum = memberMapper.numberGenerate();
+		//model.addAttribute("memberNum", memberNum);
+		memberCommand.setMemberNum(memberNum);
 	}
 }

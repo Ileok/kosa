@@ -1,0 +1,15 @@
+package kosaShoppingMall.mapper;
+
+import kosaShoppingMall.domain.EmployeeDTO;
+
+public interface EmployeeShipMapper {
+
+	void empDrop(String empId);
+
+	EmployeeDTO selectOne(String empId);
+
+	void updatePassword(EmployeeDTO dto);
+
+	Integer empUpdate(EmployeeDTO dto);
+
+}

@@ -1,6 +1,0 @@
-package springBootTest2.service.goods;
-
-@Component
-public class GoodsInfoService {
-
-}

@@ -1,5 +1,7 @@
 package kosaShoppingMall.service.member;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -14,26 +16,22 @@ import kosaShoppingMall.mapper.MemberMapper;
 public class MemberWriteService {
 
 	@Autowired
-	MemberMapper memberMapper;
+	MemberMapper memberMapper ;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	public void execute(MemberCommand memberCommand) {
-		
-			String memPw = passwordEncoder.encode(memberCommand.getMemPw());
-			System.out.println(memPw);
-			MemberDTO dto = new MemberDTO();
-			dto.setMemNum(memberCommand.getMemNum());
-			dto.setMemId(memberCommand.getMemId());
-			dto.setMemPw(memPw);
-			dto.setMemName(memberCommand.getMemName());
-			dto.setMemAddr(memberCommand.getMemAddr());
-			dto.setMemRegist(memberCommand.getMemRegist());
-			dto.setGender(memberCommand.getGender());
-			dto.setMemPhone(memberCommand.getMemPhone());
-			dto.setMemBirth(memberCommand.getMemBirth());
-			dto.setMemEmail(memberCommand.getMemEmail());
-			
-			memberMapper.memInsert(dto);
-			
-		}
+		  MemberDTO dto = new MemberDTO();
+		  dto.setGender(memberCommand.getGender());
+		  dto.setMemberAddr(memberCommand.getMemberAddr());
+		  dto.setMemberBirth(memberCommand.getMemberBirth());
+		  dto.setMemberEmail(memberCommand.getMemberEmail());
+		  dto.setMemberId(memberCommand.getMemberId());
+		  dto.setMemberName(memberCommand.getMemberName());
+		  dto.setMemberNum(memberCommand.getMemberNum());
+		  dto.setMemberPhone(memberCommand.getMemberPhone());
+		  dto.setMemberPw(passwordEncoder.encode(memberCommand.getMemberPw()));
+		  dto.setMemberRegist(Timestamp.valueOf(memberCommand.getMemberRegist()));
+		  Integer i = memberMapper.memInsert(dto);
+		  System.out.println(i + "개행이(가) 삽입되었습니다.");
 	}
+}

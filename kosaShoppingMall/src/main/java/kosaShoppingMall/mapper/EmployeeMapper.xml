@@ -4,17 +4,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosaShoppingMall.mapper.EmployeeMapper">
 <insert id = "empInsert" parameterType="empDTO">
-	insert into employees(emp_id, emp_pw, emp_name, emp_addr, emp_phone)
-	values(#{empId}, #{empPw}, #{empName}, #{empAddr}, #{empPhone})		
+	insert into employees(emp_id, emp_pw, emp_name, emp_addr, emp_phone, emp_email)
+	values(#{empId}, #{empPw}, #{empName}, #{empAddr}, #{empPhone}, #{empEmail})		
 </insert>
 
 <select id="selectAll" resultType="empDTO">
-select emp_name empName, emp_id empId, emp_addr empAddr, emp_phone empPhone
+select emp_name empName, emp_id empId, emp_addr empAddr, emp_phone empPhone, emp_email empEmail
 from employees
 </select>
 
 <select id="selectOne" parameterType="string" resultType="empDTO">
-	select emp_id empId, emp_name empName, emp_addr empAddr, emp_phone empPhone, emp_pw empPw
+	select emp_id empId, emp_name empName, emp_addr empAddr, emp_phone empPhone, emp_pw empPw, emp_email empEmail
 	from employees
 	where emp_id = #{empId}
 </select>
@@ -22,7 +22,8 @@ from employees
 <update id="empUpdate" parameterType="empDTO">
 	update employees
 	set emp_name = #{empName}, emp_addr = #{empAddr},
-	emp_phone = #{empPhone}, emp_Pw = #{empPw}
+	emp_phone = #{empPhone}, emp_Pw = #{empPw},
+	emp_email = #{empEmail}
 	where emp_id = #{empId}
 </update>
 

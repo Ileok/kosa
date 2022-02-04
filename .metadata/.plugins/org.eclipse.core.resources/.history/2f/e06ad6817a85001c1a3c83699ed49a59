@@ -1,0 +1,5 @@
+package kosaShoppingMall.service.login;
+
+public class LoginService {
+
+}

@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kosaShoppingMall.command.MemberCommand;
 import kosaShoppingMall.service.member.MemberDeleteService;
-import kosaShoppingMall.service.member.MemberInfoService;
+import kosaShoppingMall.service.member.MemberDetailService;
 import kosaShoppingMall.service.member.MemberListService;
 import kosaShoppingMall.service.member.MemberModifyService;
 import kosaShoppingMall.service.member.MemberNumService;
-import kosaShoppingMall.service.member.MemberUpdateService;
 import kosaShoppingMall.service.member.MemberWriteService;
 
 @Controller
@@ -30,71 +29,76 @@ public class MemberController {
 	@Autowired
 	MemberListService memberListService;
 	@Autowired
-	MemberInfoService memberInfoService;
+	MemberDetailService memberDetailService;
 	@Autowired
-	MemberModifyService memberModifyService;
+	MemberModifyService memberModifyService ;
 	@Autowired
-	MemberUpdateService memberUpdateService;
-	@Autowired
-	MemberDeleteService memberDeleteService;
-	
+	MemberDeleteService memberDeleteService ;
+
 	@ModelAttribute
 	MemberCommand setMemberCommand() {
 		return new MemberCommand();
 	}
 	
-	@RequestMapping("memDelete")
-	   public String memberDelete(@RequestParam(value="num") String memNum, Model model) {
-	      memberDeleteService.execute(memNum, model);
-	      //return "redirect:memList"; : ajax는 바로 redirect 불가능. next page 무적권 필요.
-	      return "thymeleaf/member/memberdel";
-	   }
-	
-//	@RequestMapping(value="memberDelete", method = RequestMethod.GET)
-//	public String memberDelete(MemberCommand memberCommand, Model model) {
-//		String path = memberDeleteService.execute(memberCommand, model);
-//		return path;
-//	}
-	@RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
-	public String memberUpdate(@Validated MemberCommand memberCommand, BindingResult result) {
+	@RequestMapping(value = "memberDelete")
+	public String memberDelete(@RequestParam(value = "num") String memberNum,
+			Model model) {
+		memberDeleteService.execute(memberNum , model);
+		return "thymeleaf/member/memberdel";
+		//return "redirect:memList";
+	}
+	@RequestMapping(value="memberModify" , method = RequestMethod.GET)
+	public String memberModify(@RequestParam(value="memberNum") 
+				String memberNum ,Model model) {
+		memberDetailService.execute(memberNum, model);
+		return "thymeleaf/member/memberUpdate";
+		//return "member/memberUpdate";
+	}
+	@RequestMapping(value="memberModify" , method = RequestMethod.POST)
+	public String memberUpdate(@Validated MemberCommand memberCommand, 
+			BindingResult result) {
 		if (result.hasErrors()) {
-			return "thymeleaf/member/memberModify";
+			return "thymeleaf/member/memberUpdate";
+			//return "member/memberUpdate";
 		}
-		
-		memberUpdateService.execute(memberCommand);
-		return "redirect:/";
+		memberModifyService.execute(memberCommand);
+		return "redirect:memberDetail/"+memberCommand.getMemberNum();
 	}
-	@RequestMapping("memberModify") 
-	public String memberModify(@RequestParam(value="memNum") String memNum, Model model) {
-		memberModifyService.execute(memNum, model);
-		return "thymeleaf/member/memberModify";
-	}
-	@RequestMapping("memberInfo/{num}")
-	public String memberInfo(@PathVariable(value="num") String memNum, Model model) {
-		memberInfoService.execute(memNum, model);
-		return "thymeleaf/member/memberInfo";
+	@RequestMapping(value="memberDetail/{num}")
+	public String memberDetail(@PathVariable(value = "num") String memberNum,
+			Model model) {
+		memberDetailService.execute(memberNum, model);
+		return "thymeleaf/member/memberDetail";
+		//return "member/memberDetail";
 	}
 	@RequestMapping("memList")
-	public String memberList(Model model) {
+	public String memList(Model model) {
 		memberListService.execute(model);
 		return "thymeleaf/member/memberList";
+		//return "member/memberList";
 	}
-	@RequestMapping(value="memberRegist", method=RequestMethod.GET)
+	@RequestMapping(value="memberRegist" ,method = RequestMethod.GET)
 	public String memberForm(MemberCommand memberCommand) {
 		memberNumService.execute(memberCommand);
 		return "thymeleaf/member/memberForm";
+		//return "member/memberForm";
 	}
-	@RequestMapping(value="memberRegist", method=RequestMethod.POST)
-	public String memberRegist(@Validated MemberCommand memberCommand, BindingResult result) {
+	@RequestMapping(value="memberRegist" ,method = RequestMethod.POST)
+	public String memberFrom(@Validated MemberCommand memberCommand, 
+			BindingResult result) {
+		
 		if (result.hasErrors()) {
 			return "thymeleaf/member/memberForm";
+			//return "member/memberForm";
 		}
 		
-		if(!memberCommand.isMemPwEqualsMemPwCon()) {
-			result.rejectValue("memPw", "memberCommand.memPw", "비밀번호 확인이 다릅니다."); 
+		if(!memberCommand.isMemberPwEqualsMemberPwCon()) {
+			result.rejectValue("memberPw", "memberCommand.memberPw", 
+					"비밀번호 확인이 다릅니다.");
 			return "thymeleaf/member/memberForm";
+			//return "member/memberForm";
 		}
 		memberWriteService.execute(memberCommand);
-		return "redirect:/";
+		return "redirect:memList";
 	}
 }

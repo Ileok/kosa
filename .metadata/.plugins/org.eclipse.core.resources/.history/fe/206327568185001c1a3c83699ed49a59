@@ -1,0 +1,94 @@
+package kosaShoppingMall.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import kosaShoppingMall.command.EmployeeCommand;
+import kosaShoppingMall.domain.AuthInfo;
+
+@Controller
+@RequestMapping("empMypage")
+public class EmpMyPageController {
+	@Autowired
+	EmpInfoService empInfoService ;
+	@Autowired
+	EmpUpdateService empUpdateService ;
+	@Autowired
+	EmpPasswordService empPasswordService;
+	@Autowired
+	EmpDropService empDropService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	@ModelAttribute
+	public EmployeeCommand getEmployeeCommand() {
+		return new EmployeeCommand();
+	}
+	
+	
+	@RequestMapping(value="memberDropOk",method=RequestMethod.POST)
+	public String memberDropOk(EmployeeCommand employeeCommand, BindingResult result
+			,Model model, HttpSession session) {
+		AuthInfo authInfo =(AuthInfo)session.getAttribute("authInfo");
+		if(passwordEncoder.matches(employeeCommand.getMemberPw(), authInfo.getUserPw())) {
+			empDropService.execute(authInfo.getUserId());
+			return "redirect:/login/logout";
+		}else {
+			result.rejectValue("memberPw", "EmployeeCommand.memberPw", "비밀번호가 틀렸습니다.");
+			return "thymeleaf/membership/memberDrop";
+		}
+	}
+	@RequestMapping("memberDrop")
+	public String memberDrop(EmployeeCommand employeeCommand) {
+		return "thymeleaf/membership/memberDrop";
+	}
+	@RequestMapping(value="memberPassModify",method=RequestMethod.POST)
+	public String memberPassModify(EmployeeCommand employeeCommand, 
+			BindingResult result , HttpSession session ) {
+		String path = empPasswordService.execute(employeeCommand,result,session );
+		return path;
+	}
+	@RequestMapping(value="memberPasswordPro",method=RequestMethod.POST)
+	public String memberPasswordPro(@RequestParam(value="memPw") String pw,
+			HttpSession session,Model model) {
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		if(passwordEncoder.matches(pw, authInfo.getUserPw())) {
+			return "thymeleaf/membership/memberPassCon";
+		}else {
+			model.addAttribute("err_pw", "비밀번호가 틀립니다.");
+			return "thymeleaf/membership/memberPass";
+		}
+	}
+	@RequestMapping("memberPass")
+	public String memberPass() {
+		return "thymeleaf/membership/memberPass";
+	}
+	@RequestMapping(value="memberInfoUpdate",method=RequestMethod.POST)
+	public String memberInfoUpdate(EmployeeCommand employeeCommand
+			, BindingResult result, HttpSession session) {
+		if(result.hasErrors()) {
+			return "thymeleaf/membership/memModify";
+		}
+		String path = empUpdateService.execute(employeeCommand, session, result);
+		return path;
+	}
+	@RequestMapping("memberInfoModify")
+	public String memberInfoModify(Model model, HttpSession session) {
+		empInfoService.execute(model, session);
+		return "thymeleaf/membership/memModify";
+	}
+	@RequestMapping("memberDetail")
+	public String memInfo(Model model, HttpSession session) {
+		empInfoService.execute(model, session);
+		return "thymeleaf/membership/memberInfo";
+	}
+}

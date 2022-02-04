@@ -1,0 +1,7 @@
+package kosaShoppingMall.mapper;
+
+public interface EmployeeShipMapper {
+
+	void empDrop(String empId);
+
+}

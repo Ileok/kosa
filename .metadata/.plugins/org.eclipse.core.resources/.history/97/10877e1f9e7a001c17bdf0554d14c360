@@ -1,7 +1,0 @@
-package springBootTest2.mapper;
-
-public interface EmpLibMapper {
-
-	public String autoNum();
-
-}

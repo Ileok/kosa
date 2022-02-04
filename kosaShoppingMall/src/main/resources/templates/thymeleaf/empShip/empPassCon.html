@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/static/css/Layout.css" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+<div id="leftMenu">
+	<ul>
+		<li><a href="empDetail">내 정보 보기</a></li>
+		<li><a href="empInfoModify">내 정보 수정</a></li>
+		<li><a href="empPass" >비밀번호 수정</a></li>
+	</ul>
+</div>
+<div id="Info">
+<form action="empPassModify" name="frm" id="frm" method="post" th:object="${employeeCommand}">
+현재 비밀번호 : <input type="password" name="oldPw" />
+<span th:if="${#fields.hasErrors('oldPw')}" th:errors="*{oldPw}"></span><br />
+바꿀 비밀번호 : <input type="password" name="empPw" id ="empPw" />
+<span th:if="${#fields.hasErrors('empPw')}" th:errors="*{empPw}"></span><br />
+비밀번호 확인 : <input type="password" name="empPwCon" id="empPwCon" /><br />
+<input type="submit" value="비밀번호 변경하기" />
+</form>
+</div>
+</div>
+</body>
+</html>

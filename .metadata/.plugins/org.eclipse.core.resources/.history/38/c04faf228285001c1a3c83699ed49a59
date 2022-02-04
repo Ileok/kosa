@@ -1,0 +1,9 @@
+package kosaShoppingMall.service.empJoin;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Serivce
+public class EmpInfoService {
+
+}

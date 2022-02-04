@@ -5,19 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-직원 리스트 페이지입니다.<br/>
-사원 수 : [[${list.size()}]]
-<table border = 1>
-   <tr><td>직원이름</td><td>아이디</td><td>주소</td><td>연락처</td></tr>
-   <th:block th:each = "dto : ${list}"> <!-- c 태그에 있는 foreach와 비슷하지요? 네!-->
-   <tr><td><a th:href="|empInfo/${dto.empId}|">[[${dto.empName }]]</a></td>
-      <td><a th:href="|empInfo/${dto.empId}|">[[${dto.empId}]]</a></td>
-      <td>[[${dto.empAddr }]]</td>
-      <td>[[${dto.empPhone }]]</td>
-   </tr>
-   </th:block>   
+사원수 : [[${list.size()}]]
+<table>
+	<tr><td>아이디</td><td>이름</td></tr>
+	<tr th:each="dto : ${list}">
+		<td><a th:href="@{empInfo(num=${dto.empId})}">[[${dto.empId}]]</a></td><td>[[${dto.empName}]]</td>
+	</tr>
 </table>
-<br/>
-<a href="empWrite">직원등록</a><br/>
+<a href="empJoin" >직원등록</a>
 </body>
 </html>
