@@ -1,0 +1,16 @@
+package kosaShoppingMall.command;
+
+import lombok.Data;
+
+@Data
+public class GoodsCommand {
+	String goodsNum;
+	String goodsName;
+	int goodsPrice;
+	String goodsContent;
+	String goodsImages;
+	String goodsMain;
+	int deliveryCost;
+	int visitCount;
+	
+}

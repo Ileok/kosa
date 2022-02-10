@@ -1,0 +1,22 @@
+package kosaShoppingMall.service.goods;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kosaShoppingMall.command.GoodsCommand;
+import kosaShoppingMall.mapper.GoodsMapper;
+
+@Component
+@Service
+public class GoodsNumberService {
+	@Autowired
+	GoodsMapper goodsMapper;
+
+	public void execute(GoodsCommand goodsCommand, Model model) {
+		String goodsNum = goodsMapper.numberGenerate();
+		model.addAttribute("goodsNum", goodsNum);
+	}
+
+}

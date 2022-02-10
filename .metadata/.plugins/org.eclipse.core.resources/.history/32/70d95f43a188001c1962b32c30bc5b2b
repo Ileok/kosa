@@ -1,0 +1,25 @@
+package kosaShoppingMall.mapper;
+
+import java.util.List;
+
+import kosaShoppingMall.domain.GoodsDTO;
+
+public interface GoodsMapper {
+
+	List<GoodsDTO> selectAll();
+
+	String numberGenerate();
+
+	Integer goodsInsert(GoodsDTO dto);
+
+	void goodsDelete(String goodsNum);
+
+	void visitCnt(String goodsNum);
+
+	GoodsDTO selectOne(String goodsNum);
+
+	List<GoodsDTO> searchGoods(String goodsWord);
+
+	void goodsUpdate(GoodsDTO dto);
+
+}

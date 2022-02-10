@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>입고</title>
+<link href="/static/css/memberLayout.css" rel="stylesheet">
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn").click(
+				function() {
+					window.open("goodsItem", "goodsItem",
+							"width=620, height=500, left=100, top=100");
+				});
+	});
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="leftMenu">
+			<ul>
+				<li><a href="goodsList">상품 리스트</a></li>
+				<li><a href="goodsRegist">상품 등록</a></li>
+				<li><a href="goodsWhList">상품 입고 현황</a></li>
+				<li><a href="goodsWh">상품 입고</a></li>
+			</ul>
+		</div>
+		<div id="MemberInfo">
+			<h2>상품 입고 등록</h2>
+			<form action="whRegist" method="post"
+				th:object="${goodsWhCommand}">
+				<table>
+					<tr>
+						<th>상품번호</th>
+						<td th:if="${goodsWhCommand == null}"><input type="text"
+							name="goodsNum" id="num" readonly="readonly" />
+						<td th:if="${goodsWhCommand != null}"><input type="text"
+							name="goodsNum" id="num" th:value="${goodsWhCommand.goodsNum}"
+							readonly="readonly" />
+							<button type="button" id="btn">상품 번호 검색</button>
+							<br /> <span th:if="${#fields.hasErrors('goodsNum')}"
+							th:errors="*{goodsNum}"></span></td>
+					</tr>
+					<tr>
+						<th>입고일</th>
+						<td><input type="date" name="whDate"
+							th:value="${#dates.format(goodsWhCommand.whDate,'yyyy-MM-dd')}" /><br />
+
+							<span th:if="${#fields.hasErrors('whDate')}"
+							th:errors="*{whDate}"></span></td>
+					</tr>
+					<tr>
+						<th>입고 수량</th>
+						<td><input type="number" name="whQty" min=1
+							th:value="${goodsWhCommand.whQty}" /><br /> <span
+							th:if="${#fields.hasErrors('whQty')}" th:errors="*{whQty}"></span></td>
+					</tr>
+					<tr>
+						<th>제조일</th>
+						<td><input type="datetime-local" name="madeDate"
+							th:value="${goodsWhCommand.madeDate}" /><br /> <span
+							th:if="${#fields.hasErrors('madeDate')}" th:errors="*{madeDate}"></span></td>
+					</tr>
+					<tr>
+						<th colspan="2"><input type="submit" value="등록" /></th>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kosaShoppingMall.mapper.GoodsMapper">
+
+	<insert id="goodsInsert" parameterType="goodsDTO">
+		insert into member(goods_num, goods_name, goods_price, goods_content,
+		delivery_cost)
+		values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContent}, #{deliveryCost})
+	</insert>
+
+	<select id="numberGenerate" resultType="string">
+		select concat('goods',nvl(max(substr(goods_num,6)),100000) + 1) from goods
+	</select>
+
+	<delete id="goodsDelete" parameterType="goodsDTO">
+		delete from goods
+		where
+		goods_num =#{goodsNum}
+
+	</delete>
+
+	<select id="searchGoods" parameterType="string"
+		resultType="goodsDTO">
+		select GOODS_NUM goodsNum , GOODS_NAME goodsName ,
+		GOODS_PRICE goodsPrice ,
+		GOODS_CONTENT goodsContent , DELIVERY_COST
+		deliveryCost, VISIT_COUNT vistCount
+		from goods
+		where GOODS_NAME like
+		'%'||#{goodsWord}||'%'
+		or GOODS_CONTENT like '%'||#{goodsWord}||'%'
+	</select>
+
+	<update id="goodsUpdate" parameterType="goodsDTO">
+		update goods
+		set
+		GOODS_NAME = #{goodsName}, GOODS_PRICE = #{goodsPrice} ,
+		GOODS_CONTENT = #{goodsContent}, DELIVERY_COST = #{deliveryCost}
+		where goods_num =
+		#{goodsNum}
+
+	</update>
+
+	<update id="visitCnt" parameterType="string">
+		update goods
+		set
+		VISIT_COUNT = visit_count+1
+		where goods_num = #{goodsNum}
+
+	</update>
+
+	<select id="selectOne" parameterType="string"
+		resultType="goodsDTO">
+		select GOODS_NUM goodsNum , GOODS_NAME goodsName ,
+		GOODS_PRICE goodsPrice ,
+		GOODS_CONTENT goodsContent , DELIVERY_COST
+		deliveryCost, VISIT_COUNT vistCount
+		from goods
+		where goods_num =
+		#{goodsNum}
+
+
+	</select>
+
+	<select id="selectAll" resultType="goodsDTO">
+		select goods_num goodsNum, goods_name goodsName, goods_price goodsPrice,
+		goods_content goodsContent, goods_images goodsImages, goods_main
+		goodsMain, delivery_cost deliveryCost, visit_count visitCount
+		from goods
+	</select>
+
+
+</mapper>

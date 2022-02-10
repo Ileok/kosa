@@ -1,0 +1,9 @@
+package kosaShoppingMall.domain;
+
+import lombok.Data;
+
+@Data
+public class GoodsWhGoodsDTO {
+	GoodsDTO gdto; // 1
+	GoodsWhDTO whdto; // 1
+}

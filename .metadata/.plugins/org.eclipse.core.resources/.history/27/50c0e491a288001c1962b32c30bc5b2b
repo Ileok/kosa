@@ -1,0 +1,25 @@
+package kosaShoppingMall.service.goods;
+
+import java.sql.Timestamp;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kosaShoppingMall.command.GoodsWhCommand;
+import kosaShoppingMall.domain.GoodsWhDTO;
+import kosaShoppingMall.mapper.GoodsMapper;
+@Service
+public class GoodsWhService {
+	@Autowired
+	GoodsMapper goodsMapper;
+	public void execute(GoodsWhCommand goodsIpgoCommand) {
+		GoodsWhDTO dto = new GoodsWhDTO();
+		dto.setGoodsNum(goodsIpgoCommand.getGoodsNum());
+		dto.setIpgoDate(goodsIpgoCommand.getWhDate());
+		dto.setIpgoQty(goodsIpgoCommand.getWhQty());
+		dto.setMadeDate(
+				Timestamp.valueOf(goodsIpgoCommand.getMadeDate()));
+		Integer i = goodsMapper.whInsert(dto);
+		System.out.println(i + "개행이(가) 삽입되었습니다.");
+	}
+}

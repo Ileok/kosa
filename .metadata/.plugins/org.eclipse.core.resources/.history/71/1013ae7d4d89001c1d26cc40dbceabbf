@@ -1,0 +1,10 @@
+package kosaShoppingMall.service.goods;
+
+public class GoodsWhDelsService {
+
+	public void execute(String[] deletes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

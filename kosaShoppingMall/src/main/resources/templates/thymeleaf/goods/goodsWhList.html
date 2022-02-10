@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/static/css/Layout.css" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+<div id="leftMenu">
+<ul>
+	<li><a href="goodsList">상품 리스트</a></li>
+	<li><a href="goodsRegist">상품 등록</a></li>
+	<li><a href="goodsWhList">상품 입고 현황</a></li>
+	<li><a href="goodsWh">상품 입고</a></li>
+	
+</ul>
+</div>
+<div id="Info">
+<h2>입고현황</h2>
+<form action="goodsWhdels" method="post">
+<table border="1" width="600">
+		<tr><th>순서</th><th>상품번호</th><th>입고일</th><th>수량</th><th>제조일</th>
+			<th><input type="submit" value="삭제" /></th></tr>
+		<tr th:each="goodsCommand , idx : ${list}">
+		    <th>[[${idx.count}]]</th>
+			<th><a th:href="@{goodsWhDetail(goodsNum=${goodsCommand.goodsNum},
+										   whDate=${#dates.format(goodsCommand.whDate,'yyyy-MM-dd')})}">
+				[[${goodsCommand.goodsNum}]]
+				</a></th>
+			<th>[[${#dates.format(goodsCommand.whDate,'yyyy-MM-dd')}]]</th>
+			<th>[[${goodsCommand.whQty}]]</th>
+			<th>[[${#dates.format(goodsCommand.madeDate,'yyyy-MM-dd')}]]</th>
+			<th><input type="checkbox"  name="delete" 
+			th:value="${goodsCommand.goodsNum}+'`'+${#dates.format(goodsCommand.whDate,'yyyy-MM-dd')}" /></th>
+		</tr>
+	</table>
+</form>
+</div>
+</div>
+</body>
+</html>

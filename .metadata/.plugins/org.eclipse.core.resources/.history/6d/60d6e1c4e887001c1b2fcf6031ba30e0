@@ -1,0 +1,19 @@
+package kosaShoppingMall.domain;
+
+import org.apache.ibatis.type.Alias;
+
+import lombok.Data;
+
+@Alias("goodsDTO")
+@Data
+public class GoodsDTO {
+	String goodsNum;
+	String goodsName;
+	String goodsPrice;
+	String goodsContent;
+	String goodsImages;
+	String goodsMain;
+	String deliveryCost;
+	String visitCount;
+	
+}

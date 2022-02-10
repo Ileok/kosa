@@ -1,0 +1,5 @@
+package kosaShoppingMall.domain;
+
+public class GoodsWhDTO {
+
+}

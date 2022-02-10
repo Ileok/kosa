@@ -1,0 +1,13 @@
+package kosaShoppingMall.domain;
+
+public class goodsDTO {
+	String goodsNum;
+	String goodsName;
+	String goodsPrice;
+	String goodsContent;
+	String goodsImages;
+	String goodsMain;
+	String deliveryCost;
+	String visitCount;
+	
+}

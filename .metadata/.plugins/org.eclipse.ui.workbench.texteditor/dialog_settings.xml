@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="employeeShipMapper"/>
+		<item key="selection" value="Wh"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="ipgo"/>
+			<item value="visitCnt"/>
+			<item value="idto"/>
+			<item value="whselect"/>
+			<item value="vist"/>
+			<item value="goodsAutoNum"/>
+			<item value="Ipgo"/>
 			<item value="empshipMapper"/>
-			<item value="member"/>
-			<item value="memDTO"/>
-			<item value="EmpCommand"/>
-			<item value="MemberCommand"/>
-			<item value="memberDropService"/>
-			<item value="emp"/>
-			<item value="employee"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Wh"/>
+			<item value="wh"/>
+			<item value="wdto"/>
+			<item value="visit"/>
+			<item value="goodsNumberService"/>
 			<item value="employeeShipMapper"/>
 			<item value="emp"/>
 			<item value="empDTO"/>
-			<item value="employeeCommand"/>
-			<item value="EmployeeCommand"/>
-			<item value="empDropService"/>
-			<item value="mem"/>
-			<item value="member"/>
 		</list>
 	</section>
 </section>

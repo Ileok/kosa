@@ -1,0 +1,33 @@
+package kosaShoppingMall.service.goods;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kosaShoppingMall.domain.GoodsWhDTO;
+import kosaShoppingMall.domain.GoodsWhGoodsDTO;
+import kosaShoppingMall.mapper.GoodsMapper;
+@Service
+public class GoodsWhDetailService {
+	@Autowired
+	GoodsMapper goodsMapper;
+	public void execute(String goodsNum, String whDate, Model model) {
+		GoodsWhDTO idto = new GoodsWhDTO();
+		idto.setGoodsNum(goodsNum);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			idto.setWhDate(sdf.parse(whDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		GoodsWhGoodsDTO dto = goodsMapper.whDetail(idto);
+		model.addAttribute("goodsWhGoodsCommand", dto);		
+	}
+
+}

@@ -1,0 +1,13 @@
+package kosaShoppingMall.mapper;
+
+import java.util.List;
+
+import kosaShoppingMall.domain.GoodsDTO;
+
+public interface GoodsMapper {
+
+	List<GoodsDTO> selectAll();
+
+	String numberGenerate();
+
+}

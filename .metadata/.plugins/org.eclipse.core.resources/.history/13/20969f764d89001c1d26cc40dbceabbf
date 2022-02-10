@@ -1,0 +1,12 @@
+package kosaShoppingMall.service.goods;
+
+import kosaShoppingMall.command.GoodsWhCommand;
+
+public class GoodsWhDeleteService {
+
+	public void execute(GoodsWhCommand goodsWhCommand) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

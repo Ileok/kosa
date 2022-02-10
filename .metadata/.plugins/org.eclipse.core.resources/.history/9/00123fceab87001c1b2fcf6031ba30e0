@@ -1,0 +1,5 @@
+package kosaShoppingMall.Intercepter;
+
+public class CertificationIntercepter {
+
+}

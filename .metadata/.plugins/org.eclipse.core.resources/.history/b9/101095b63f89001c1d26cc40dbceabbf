@@ -1,0 +1,11 @@
+package kosaShoppingMall.service.goods;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Component
+@Service
+public class GoodsDelsService {
+	@Autowired
+	GoodsMapper goodsMapper;
+	
+}

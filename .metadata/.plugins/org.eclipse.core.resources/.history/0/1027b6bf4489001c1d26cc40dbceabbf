@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kosaShoppingMall.mapper.GoodsMapper">
+
+	<resultMap type="kosaShoppingMall.domain.GoodsWhGoodsDTO"
+		id="goodsWhGoodsMap">
+		<association property="goodsDTO" javaType="goodsDTO">
+			<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+			<result column="GOODS_NAME" jdbcType="VARCHAR"
+				property="goodsName" />
+			<result column="GOODS_PRICE" jdbcType="BIGINT"
+				property="goodsPrice" />
+			<result column="GOODS_CONTENT" jdbcType="VARCHAR"
+				property="goodsContent" />
+			<result column="DELIVERY_COST" jdbcType="BIGINT"
+				property="deliveryCost" />
+			<result column="VISIT_COUNT" jdbcType="BIGINT"
+				property="visitCount" />
+		</association>
+		<association property="goodsWhDTO" javaType="goodsWhDTO">
+			<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+			<id column="Wh_DATE" jdbcType="DATE" property="whDate" />
+			<result column="Wh_QTY" jdbcType="BIGINT" property="whQty" />
+			<result column="MADE_DATE" jdbcType="TIMESTAMP"
+				property="madeDate" />
+		</association>
+	</resultMap>
+
+	<resultMap type="goodsDTO" id="goodsWhGoodsResultMap">
+		<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
+		<result column="GOODS_PRICE" jdbcType="BIGINT"
+			property="goodsPrice" />
+		<result column="GOODS_CONTENT" jdbcType="VARCHAR"
+			property="goodsContent" />
+		<result column="DELIVERY_COST" jdbcType="BIGINT"
+			property="deliveryCost" />
+		<result column="VISIT_COUNT" jdbcType="BIGINT"
+			property="visitCount" />
+		<association property="goodsWhDTO" javaType="goodsWhDTO">
+			<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+			<id column="WH_DATE" jdbcType="DATE" property="whDate" />
+			<result column="WH_QTY" jdbcType="BIGINT" property="whQty" />
+			<result column="MADE_DATE" jdbcType="TIMESTAMP"
+				property="madeDate" />
+		</association>
+	</resultMap>
+
+	<select id="getGoodsWhInfo" parameterType="goodsWhDTO"
+		resultMap="goodsWhGoodsResultMap">
+		select g.GOODS_NUM, g.GOODS_NAME, g.GOODS_PRICE,
+		g.GOODS_CONTENT,
+		g.DELIVERY_COST, g.VISIT_COUNT,
+		i.WH_DATE, i.WH_QTY,
+		MADE_DATE
+		from goods g, goodswh i
+		where g.GOODS_NUM =
+		i.GOODS_NUM and
+		g.GOODS_NUM = #{goodsNum}
+		and i.WH_DATE=#{whDate}
+	</select>
+
+	<select id="whDetail" parameterType="goodsWhDTO"
+		resultMap="goodsWhGoodsMap">
+		select g.GOODS_NUM, g.GOODS_NAME, g.GOODS_PRICE,
+		g.GOODS_CONTENT,
+		g.DELIVERY_COST, g.VISIT_COUNT,
+		i.WH_DATE, i.WH_QTY,
+		MADE_DATE
+		from goods g, goodswh i
+		where g.GOODS_NUM =
+		i.GOODS_NUM and
+		g.GOODS_NUM = #{goodsNum}
+		and i.WH_DATE=#{whDate}
+	</select>
+
+	<select id="whSelect" resultType="goodsWhDTO">
+		select WH_DATE
+		whDate,GOODS_NUM
+		goodsNum ,WH_QTY whQty,MADE_DATE madeDate
+		from
+		goodswh
+		order by GOODS_NUM
+		desc, WH_DATE desc
+	</select>
+
+	<insert id="goodsInsert" parameterType="goodsDTO">
+		insert into
+		goods(GOODS_NUM , GOODS_NAME , GOODS_PRICE,
+		GOODS_CONTENT,
+		DELIVERY_COST, VISIT_COUNT)
+		values(#{goodsNum},#{goodsName},
+		#{goodsPrice},#{goodsContent},#{deliveryCost},0)
+
+	</insert>
+
+	<select id="numberGenerate" resultType="string">
+		select
+		concat('goods',nvl(max(substr(goods_num,6)),10000) + 1) from goods
+	</select>
+
+	<insert id="whInsert" parameterType="goodsWhDTO">
+		insert into
+		goodswh(Wh_DATE,GOODS_NUM,Wh_QTY,MADE_DATE)
+		values(#{whDate},#{goodsNum},#{whQty},#{madeDate})
+	</insert>
+
+	<select id="goodsItems" parameterType="string"
+		resultType="goodsDTO">
+		select GOODS_NUM goodsNum , GOODS_NAME goodsName ,
+		GOODS_PRICE goodsPrice ,
+		GOODS_CONTENT goodsContent , DELIVERY_COST
+		deliveryCost,
+		VISIT_COUNT visitCount
+		from goods
+		where GOODS_NAME like
+		'%'||#{goodsWord}||'%'
+	</select>
+
+	<delete id="goodsDelete" parameterType="goodsDTO">
+		delete from goods
+		where
+		goods_num = #{goodsNum}
+
+	</delete>
+
+	<delete id="goodsDels" parameterType="hashMap">
+		delete from goods
+		<where>
+			<foreach collection="" item="" index="" open="(" close=")" separator=",">
+				#{goodsNum}
+			</foreach>
+		</where>
+	</delete>
+
+	<select id="searchGoods" parameterType="string"
+		resultType="goodsDTO">
+		select GOODS_NUM goodsNum , GOODS_NAME goodsName ,
+		GOODS_PRICE goodsPrice ,
+		GOODS_CONTENT goodsContent , DELIVERY_COST
+		deliveryCost, VISIT_COUNT visitCount
+		from goods
+		where GOODS_NAME like
+		'%'||#{goodsWord}||'%'
+		or GOODS_CONTENT like '%'||#{goodsWord}||'%'
+	</select>
+
+	<update id="goodsUpdate" parameterType="goodsDTO">
+		update goods
+		set
+		GOODS_NAME = #{goodsName}, GOODS_PRICE = #{goodsPrice} ,
+		GOODS_CONTENT
+		= #{goodsContent}, DELIVERY_COST = #{deliveryCost}
+		where goods_num =
+		#{goodsNum}
+	</update>
+	
+	<update id="goodsVisitCnt" parameterType="string">
+		update goods
+		set
+		VISIT_COUNT = visit_count+1
+		where goods_num = #{goodsNum}
+
+	</update>
+
+	<select id="goodsSelectOne" parameterType="string"
+		resultType="goodsDTO">
+		select GOODS_NUM goodsNum , GOODS_NAME goodsName ,
+		GOODS_PRICE goodsPrice ,
+		GOODS_CONTENT goodsContent , DELIVERY_COST
+		deliveryCost, VISIT_COUNT visitCount
+		from goods
+		where goods_num =
+		#{goodsNum}
+
+
+	</select>
+
+	<select id="selectAll" resultType="goodsDTO">
+		select GOODS_NUM goodsNum ,
+		GOODS_NAME goodsName , GOODS_PRICE goodsPrice ,
+		GOODS_CONTENT
+		goodsContent , DELIVERY_COST deliveryCost, VISIT_COUNT visitCount
+		from
+		goods
+	</select>
+
+
+</mapper>

@@ -18,7 +18,7 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 
-	@RequestMapping(value = "/loginPro", method = RequestMethod.GET)
+	@RequestMapping(value = "/login/loginPro", method = RequestMethod.GET)
 	public String home() {
 		return "redirect:/";
 	}
@@ -27,7 +27,7 @@ public class LoginController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	@RequestMapping(value = "/loginPro", method = RequestMethod.POST)
+	@RequestMapping(value = "/login/loginPro", method = RequestMethod.POST)
 	public String loginPro(@Validated LoginCommand loginCommand ,
 			BindingResult result, HttpSession  session) {
 		if(result.hasErrors()) {

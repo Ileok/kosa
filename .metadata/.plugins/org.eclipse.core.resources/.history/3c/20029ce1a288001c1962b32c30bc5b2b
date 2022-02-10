@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/static/css/memberLayout.css" rel="stylesheet" >
+<script language='javascript'>
+
+function noEvent() {
+    if (event.keyCode == 116) {
+        event.keyCode= 2;
+        return false;
+    }
+    else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82))
+    {
+        return false;
+    }
+}
+document.onkeydown = noEvent;
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="leftMenu">
+	<ul>
+		<li><a href="../goodsList">상품 리스트</a></li>
+		<li><a href="../goodsRegist">상품 등록</a></li>
+		<li><a href="../goodsWhList">상품 입고 현황</a></li>
+		<li><a href="../goodsWh">상품 입고</a></li>
+	</ul>
+</div>
+<div id="Info">
+	상세 페이지 일까요?<br />
+	상품 번호: [[${goodsCommand.goodsNum}]] || 조회수 : [[${goodsCommand.vistCount}]]
+	<br />상품 이름: [[${goodsCommand.goodsName}]]
+	<br />가격 : [[${goodsCommand.goodsPrice}]]
+
+	<br />내용 : [[${goodsCommand.goodsContent}]]
+	<br />배송비 : [[${goodsCommand.deliveryCost}]]
+	<Br/><a href="javascript:history.back();">뒤로 가기</a> | 
+		 <a th:href="@{../goodsModify(goodsNum=${goodsCommand.goodsNum})}">수정</a> | 
+		 <a th:href="|../goodsDelete/${goodsCommand.goodsNum}|">삭제</a>
+</div>
+</div>		 
+	
+</body>
+</html>

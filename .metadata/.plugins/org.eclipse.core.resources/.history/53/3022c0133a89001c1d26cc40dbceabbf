@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/static/css/Layout.css" rel="stylesheet">
+</head>
+<body>
+	<div id="wrapper">
+		<div id="leftMenu">
+			<ul>
+				<li><a href="goodsList">상품 리스트</a></li>
+				<li><a href="goodsRegist">상품 등록</a></li>
+				<li><a href="goodsWhList">상품 입고 현황</a></li>
+				<li><a href="goodsWh">상품 입고</a></li>
+			</ul>
+		</div>
+		<div id="Info">23
+		
+			제품번호 : [[${goodsWhGoodsCommand.goodsDTO.goodsNum}]]<br /> 제품명 :
+			[[${goodsWhGoodsCommand.goodsDTO.goodsName}]]<br /> 가격 :
+			[[${goodsWhGoodsCommand.goodsDTO.goodsPrice}]]<br /> 내용 :
+			[[${goodsWhGoodsCommand.goodsDTO.goodsContent}]]<br /> 배송비 :
+			[[${goodsWhGoodsCommand.goodsDTO.deliveryCost}]]<br /> 조회수 :
+			[[${goodsWhGoodsCommand.goodsDTO.vistCount}]]<br /> 입고 일 :
+			[[${goodsWhGoodsCommand.goodsWhDTO.whDate}]] <br /> 입고 수량 :
+			[[${goodsWhGoodsCommand.goodsWhDTO.whQty}]]<br /> 제조일 :
+			[[${goodsWhGoodsCommand.goodsWhDTO.madeDate}]]<br /> <a
+				th:href="@{goodsWhModify(goodsNum=${goodsWhGoodsCommand.goodsDTO.goodsNum},
+whDate=${#dates.format(goodsWhGoodsCommand.goodsWhDTO.whDate,'yyyy-MM-dd')})}">수정</a>
+		</div>
+	</div>
+</body>
+</html>

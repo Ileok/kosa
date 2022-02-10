@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+회원등록페이지<br/>
+<form action="memberRegist" method="post" name="frm" id="frm">
+회원 번호 : <input type="text" name="memberNum" value="${memberNum}" readonly="readonly">:번호 자동부여<br/>
+회원 아이디 : <input type="text" name="memberId"/>
+회원 비밀번호 : <input type="password" name="memberPw" />
+회원 비밀번호 확인 : <input type="password" name="memberPwCon"  />
+
+회원 이름 :  <input type="text" name="memberName" />
+
+회원 주소 :  <input type="text" name="memberAddr"  />
+
+등록일 :  <input type="date" name="memberRegist" />
+
+성별 : <input type="radio" name="gender" value="F" checked/>여자 
+	 <input type="radio" name="gender" value="M"/>남자
+
+연락처 :   <input type="tel" name="memberPhone" />
+	
+생년월일 : <input type="date" name="memberBirth" /> 
+		
+
+회원 이메일 : <input type="email" name="memberEmail" />
+
+<input type="submit" value="회원 등록"/>
+</form>
+</body>
+</html>

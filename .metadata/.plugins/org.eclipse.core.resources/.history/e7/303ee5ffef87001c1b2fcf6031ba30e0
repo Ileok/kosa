@@ -1,0 +1,14 @@
+package kosaShoppingMall.service.goods;
+
+import kosaShoppingMall.command.GoodsCommand;
+
+@Component
+@Service
+public class GoodsRegistService {
+
+	public void execute(GoodsCommand goodsCommand) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
